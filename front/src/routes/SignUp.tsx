@@ -1,39 +1,44 @@
 import { useState } from "react";
 import DefaultLayout from "../layout/DefaultLayout";
 import { useAuth } from "./auth/AuthProvider";
-import { Navigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { API_URL } from "./auth/Constants";
 import { AuthResponseError } from "../types/types";
 
 export default function SignUp() {
-    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errorResponse, setErrorResponse] = useState("");
 
     const auth = useAuth();
+    const goTo = useNavigate();
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         try {
             const response = await fetch(`${API_URL}/signup`, {
-                method: 'POST',
+                method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({
-                    name,
-                    username,
-                    password,
-                }),
-            })
+                    body: JSON.stringify({
+                        username,
+                        email,
+                        password,
+                    }),
+                },
+               
+            );
             if(response.ok){
                 console.log('User created successfully');
+                setErrorResponse("");
+                goTo('/');
+            }else{
+                console.log('Error creating user');
                 const json = (await response.json()) as AuthResponseError;
                 setErrorResponse(json.body.error);
                 return;
-            }else{
-                console.log('Error creating user');
             }
         } catch (error) {
             console.error(error);
@@ -49,17 +54,16 @@ export default function SignUp() {
             <form className="form" onSubmit={handleSubmit}>
                 <h1>Signup</h1>
                 {!!errorResponse && <div className="errorMessage"> {errorResponse}</div>}
-                <label >Name</label>
-                <input 
-                    type="text" 
-                    value={name} 
-                    onChange={(e) => setName(e.target.value)}/>
-
                 <label htmlFor="">Username</label>
                 <input 
                     type="text" 
                     value={username} 
                     onChange={(e) => setUsername(e.target.value)}/>
+                <label >Email</label>
+                <input 
+                    type="text" 
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)}/>
 
                 <label htmlFor="">Password</label>
                 <input 
