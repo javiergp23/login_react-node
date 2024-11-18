@@ -6,7 +6,7 @@ import { API_URL } from "./auth/Constants";
 import { AuthResponseError } from "../types/types";
 
 export default function Login() {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [errorResponse, setErrorResponse] = useState("");
     const auth = useAuth();
@@ -21,7 +21,7 @@ export default function Login() {
                     'Content-Type': 'application/json',
                 },
                     body: JSON.stringify({
-                        username,
+                        email,
                         password,
                     }),
                 },
@@ -30,13 +30,14 @@ export default function Login() {
             if(response.ok){
                 console.log('Login successful');
                 setErrorResponse("");
-                goTo('/');
+                auth.login();
+                goTo('/dashboard');
             }else{
                 console.log('Error creating user');
                 const json = (await response.json()) as AuthResponseError;
                 setErrorResponse(json.body.error);
-                return;
-            }
+                return; 
+            } 
         } catch (error) {
             console.error(error);
         }
@@ -51,11 +52,11 @@ export default function Login() {
             <form className="form" onSubmit={handleSubmit}>
                 {!!errorResponse && <div className="errorMessage"> {errorResponse}</div>}
                 <h1>Login</h1>
-                <label htmlFor="">Username</label>
+                <label htmlFor="">Email</label>
                 <input 
                     type="text" 
-                    value={username} 
-                    onChange={(e) => setUsername(e.target.value)}/>
+                    value={email} 
+                    onChange={(e) => setEmail(e.target.value)}/>
 
                 <label htmlFor="">Password</label>
                 <input 
@@ -64,6 +65,12 @@ export default function Login() {
                     onChange={(e) => setPassword(e.target.value)}/>
                 
                 <button>Login</button>
+                <div>
+                    <h4>
+                        You don't have an account? <a href="/signup">Sign Up</a>
+                    </h4> 
+                    
+                </div>
             </form>
         </DefaultLayout>
     )

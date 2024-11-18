@@ -33,5 +33,27 @@ module.exports = {
             })            
             })
         })
+    },
+
+     // Obtener usuario por email (para login)
+     getUserByEmail: (email, callback) => {
+        const sql = `SELECT * FROM users WHERE email = ?`;
+        db.get(sql, [email], (err, user) => {
+            if (err) {
+                console.error("Error al obtener el usuario:", err.message);
+                return callback(err);
+            }
+            callback(null, user);
+        });
+    },
+
+    // Comparar contraseñas
+    comparePassword: (password, hashedPassword, callback) => {
+        bcrypt.compare(password, hashedPassword, (err, isMatch) => {
+            if (err) {
+                return callback(err);
+            }
+            callback(null, isMatch);
+        });
     }
 }
