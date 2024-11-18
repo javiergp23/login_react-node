@@ -1,8 +1,37 @@
 const db = require('../config/db');
+const SignupController = require('../controllers/SignupController');
+const bcrypt = require('bcrypt');
 
 module.exports = {
     createUser: (userData, callback) => {
-        sql = `INSERT INTO users (username, email, password ) VALUES (?, ?, ?)`;
-        db.run(sql, userData, callback)            
+        const [username, email, password] = userData;
+       
+        const checkSql = `SELECT * FROM users WHERE username = ? OR email = ?`;
+        db.get(checkSql, [username, email], (err, row) => {
+            if (err) {
+                console.error("Error al verificar la existencia del usuario:", err.message);
+                return callback(err);
+            }
+            if (row) {
+                // Si se encuentra un usuario con el mismo nombre o correo
+                return callback(new Error('user already exists'));
+            }
+
+            bcrypt.hash(password, 10, (err, hashedPassword) => { 
+                if (err) {
+                    console.error("Error al encriptar la contraseña:", err.message);
+                    return callback(err);
+                }
+
+            const sql = `INSERT INTO users (username, email, password ) VALUES (?, ?, ?)`;
+            db.run(sql,  [username, email, hashedPassword], (err) => {
+                if(err){
+                    console.error(err.message);
+                    return callback(err);
+                }
+                callback(null);
+            })            
+            })
+        })
     }
 }

@@ -37,7 +37,11 @@ export default function SignUp() {
             }else{
                 console.log('Error creating user');
                 const json = (await response.json()) as AuthResponseError;
-                setErrorResponse(json.body.error);
+                if(response.status === 409 && json.body.error === "User already exists"){
+                    setErrorResponse("User already exists");
+                }else{
+                    setErrorResponse(json.body.error);
+                }
                 return;
             }
         } catch (error) {
