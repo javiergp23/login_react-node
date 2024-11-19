@@ -55,5 +55,20 @@ module.exports = {
             }
             callback(null, isMatch);
         });
+    },
+
+    saveRefreshToken: (userId, token, callback) => {
+        const sql = `INSERT INTO refresh_tokens (user_id, token) VALUES (?, ?)`;
+        db.run(sql, [userId, token], callback);
+    },
+
+    getRefreshToken: (token, callback) => {
+        const sql = `SELECT * FROM refresh_tokens WHERE token = ?`;
+        db.get(sql, [token], callback);
+    },
+
+    deleteRefreshToken: (token, callback) => {
+        const sql = `DELETE FROM refresh_tokens WHERE token = ?`;
+        db.run(sql, [token], callback);
     }
 }

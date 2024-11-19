@@ -1,4 +1,6 @@
 import { useAuth } from "./auth/AuthProvider";
+import DataTable from "../components/Datatable";
+import { Box } from "@mui/material";
 
 export default function Dashboard() {
     const auth = useAuth();
@@ -8,10 +10,27 @@ export default function Dashboard() {
     }
 
     return (
-        <div>
-            <h1>Dashboard</h1>
-            <h2>Aqui estara el crud</h2>
-            <button onClick={handleLogout}>Logout</button>
-        </div>
+        <Box component='div' sx={{
+            justifyContent: 'center',
+            alignItems: 'center',
+        }}>
+            <div>
+                <h1 className="dashboard">Dashboard</h1>
+                <button className="logout" onClick={handleLogout}>Logout</button>
+            </div>
+            <Box component='div' sx={{
+                justifyContent: 'center',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+            }}>
+            
+                <DataTable/> 
+
+            </Box>
+            <button className="agregarTarea"> 
+                Agregar tarea
+            </button>
+        </Box>
     )
 }
