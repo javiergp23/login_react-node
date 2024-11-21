@@ -53,24 +53,28 @@ Ejecuta el frontend en modo de desarrollo:
 npm run dev
 El frontend se ejecutará en el puerto 3000 por defecto (configurable en el archivo .env o en vite.config.ts).
 
+## Estructura del Proyecto
+
+```plaintext
 root/
 ├── backend/
 │   ├── node_modules/
-│   ├── .env
+│   ├── .env                # Variables de entorno para la configuración
 │   ├── package.json
-│   ├── app.js
-│   ├── config/
-│   ├── controllers/
-│   ├── models/
-│   └── database.db
+│   ├── app.js              # Configuración del servidor backend
+│   ├── config/             # Configuración de la base de datos, JWT, etc.
+│   ├── controllers/        # Controladores de las rutas
+│   ├── models/             # Modelos de la base de datos
+│   └── database.db         # Base de datos SQLite
 ├── frontend/
 │   ├── node_modules/
 │   ├── package.json
-│   ├── vite.config.ts
-│   ├── public/
-│   └── src/
-│       ├── components/
-│       ├── pages/
-│       └── styles/
+│   ├── vite.config.ts      # Configuración de Vite
+│   ├── public/             # Archivos públicos
+│   └── src/                # Archivos fuente
+│       ├── components/     # Componentes de React
+│       ├── pages/          # Páginas de la aplicación
+│       └── styles/         # Archivos de estilo
 └── README.md
+```
 
