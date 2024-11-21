@@ -9,7 +9,7 @@ const db = new sqlite3.Database('./database.db', sqlite3.OPEN_READWRITE, (err) =
     console.log('Connected to the database');
 
     return db;
-});
+}); 
 
 // sql = `CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, username, email, password)`;
 // db.run(sql)
@@ -36,8 +36,6 @@ const db = new sqlite3.Database('./database.db', sqlite3.OPEN_READWRITE, (err) =
 //     }
 // )
 
-
- 
 // tabla para el crud
 // sql = ` CREATE TABLE tasks (
 //     id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -58,11 +56,11 @@ const db = new sqlite3.Database('./database.db', sqlite3.OPEN_READWRITE, (err) =
 // })
 
 //mostrar datos de la tabla de tareas
-sql = `SELECT title, description, due_date, status, tags FROM tasks ORDER BY due_date ASC`;
-db.all(sql,[], (err, rows) => {
-    if(err) return console.error(err.message);
-    rows.forEach((row) => console.log(row));
-})
+// sql = `SELECT title, description, due_date, status, tags FROM tasks ORDER BY due_date ASC`;
+// db.all(sql,[], (err, rows) => {
+//     if(err) return console.error(err.message);
+//     rows.forEach((row) => console.log(row));
+// })
 
 //Metodo para obtener los datos de las tareas en la tabla tasks
  const getTasksFromDb = () => {

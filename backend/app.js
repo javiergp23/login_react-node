@@ -19,7 +19,7 @@ app.use('/api/user', require('./routes/user'));
 app.use('/api/tasks', require('./routes/tasks'));
 
 app.get('/', (req, res) => {
-  res.send('Server running on port 4001');
+  res.send('Server');
 });
 
 app.listen(port, () => {

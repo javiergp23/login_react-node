@@ -1,5 +1,5 @@
 const userModel = require('../models/userModel');
-const db = require('../config/db');
+const {db} = require('../config/db');
 const { jsonResponse } = require('../lib/jsonResponse');
 const jwt = require('jsonwebtoken');
 

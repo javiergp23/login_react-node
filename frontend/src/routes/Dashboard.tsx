@@ -43,7 +43,7 @@ export default function Dashboard() {
     const handleDelete = async (id: number) => {
       try {
         const response = await fetch(`${API_URL}/tasks/${id}`, {
-          method: 'DELETE',  // Método DELETE
+          method: 'DELETE', 
           headers: {
             'Content-Type': 'application/json',
           },
