@@ -28,8 +28,12 @@ export default function Login() {
                
             );
             if(response.ok){
+                const data = await response.json();
                 console.log('Login successful');
+                console.log(data)
                 setErrorResponse("");
+                localStorage.setItem("accessToken", data.accessToken);
+                localStorage.setItem("refreshToken", data.refreshToken);
                 auth.login();
                 goTo('/dashboard');
             }else{

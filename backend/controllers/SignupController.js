@@ -29,9 +29,7 @@ const createUser = (req, res) => {
             return res.status(200).json(jsonResponse(200,{
             message: "User created successfully"
             }));
-
         })
-        
     } 
 
 module.exports = createUser;

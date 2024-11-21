@@ -57,7 +57,18 @@ a {
 
 .dashboard {
   width: 500px;
-  margin: auto;
+  margin: 0 0 0 18%;
+}
+@media (min-width: 768px) {
+  .dashboard {
+    margin: 0 0 0 22%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .dashboard {
+    margin: 0 0 0 35%;
+  }
 }
 
 .errorMessage {
@@ -66,18 +77,78 @@ a {
   padding: 10px;
 }
 
-.logout{
+.logout {
   padding: 15px;
   margin-left: 1000px;
 }
 
-
-.dashboard{
+.dashboard {
   text-align: center;
 }
 
-
-.agregarTarea{
+.agregarTarea {
   margin-left: 75%;
   margin-top: 20px;
+}
+
+/* Checkbox */
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.container {
+  display: block;
+  position: relative;
+  cursor: pointer;
+  font-size: 20px;
+  user-select: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Creando el custom checkbox */
+.checkmark {
+  position: relative;
+  top: 0;
+  left: 0;
+  height: 1.3em;
+  width: 1.3em;
+  background-color: #ccc;
+  border-radius: 25px;
+  transition: 0.15s;
+}
+
+/* cuando el checkbox es cheked, agregar un background color */
+.container input:checked ~ .checkmark {
+  background-color: limegreen;
+  border-radius: 25px;
+  transition: 0.15s;
+}
+
+/* Create the checkmark/indicator  */
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Mostrar el checkmark cuando está marcado */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  left: 0.45em;
+  top: 0.25em;
+  width: 0.25em;
+  height: 0.5em;
+  border: solid white;
+  border-width: 0 0.15em 0.15em 0;
+  transform: rotate(45deg);
 }

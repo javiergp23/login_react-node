@@ -5,14 +5,12 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
-
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import SignUp from './routes/SignUp.tsx'
 import Login from './routes/Login.tsx'
 import Dashboard from './routes/Dashboard.tsx'
 import ProtectedRoute from './routes/ProtectedRoute.tsx'
 import { AuthProvider } from './routes/auth/AuthProvider.tsx'
-
 
 const router = createBrowserRouter([
   {

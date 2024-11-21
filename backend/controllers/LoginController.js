@@ -1,6 +1,10 @@
 const userModel = require('../models/userModel');
+const db = require('../config/db');
 const { jsonResponse } = require('../lib/jsonResponse');
 const jwt = require('jsonwebtoken');
+
+const generateAccessToken = (payload) => jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
+const generateRefreshToken = (payload) => jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
 
 const loginUser = (req, res) => {
     const { email, password } = req.body;
@@ -40,11 +44,29 @@ const loginUser = (req, res) => {
                 }));
             }
 
-            // Aquí podrías generar un token de autenticación si estás usando JWT, por ejemplo
-            return res.status(200).json(jsonResponse(200, {
-                message: "Login successful"
-            }));
+            // Generar tokens
+            const accessToken = generateAccessToken({ id: user.id, email: user.email });
+            const refreshToken = generateRefreshToken({ id: user.id, email: user.email });
+
+            // Guardar el refresh token en la base de datos
+            const query = `INSERT INTO refresh_tokens (token, user_id) VALUES (?, ?)`;
+            db.run(query, [refreshToken, user.id], (dbErr) => {
+                if (dbErr) {
+                    return res.status(500).json(jsonResponse(500, {
+                        error: "Error saving refresh token"
+                    }));
+                }
+                // Responder con los tokens
+                return res.status(200).json(jsonResponse(200, {
+                    message: "Login successful",
+                    accessToken,
+                    refreshToken
+                }));
+            });
+
         });
+        
+
     });
 };
 
