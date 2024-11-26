@@ -23,9 +23,8 @@ const verifyAccessToken = (req, res, next) => {
             }));
         }
 
-        // Si es válido, agregar la información del usuario al objeto `req`
-        req.user = decoded; // Aquí puedes guardar los datos del usuario decodificados
-        next(); // Continuar con el siguiente middleware o controlador
+        req.user = decoded; 
+        next(); 
     });
 };
 
