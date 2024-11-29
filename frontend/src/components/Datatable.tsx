@@ -58,8 +58,6 @@ const Datatable: React.FC<DatatableProps> = ({ tasks, handleDelete }) => {
     }
   }, [tasks, filters]);
 
-  
-
   return (
     <TableContainer component={Paper} sx={{
       maxWidth: {xs: '95%', sm: '95%', md: '80%', lg: '80%', xl: '80%'},

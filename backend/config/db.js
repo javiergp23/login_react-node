@@ -8,8 +8,8 @@ const db = new sqlite3.Database('./database.db', sqlite3.OPEN_READWRITE, (err) =
     }
     console.log('Connected to the database');
 
-    return db;
-}); 
+    return db
+}); ;
 
 // sql = `CREATE TABLE users (id INTEGER PRIMARY KEY AUTOINCREMENT, username, email, password)`;
 // db.run(sql)

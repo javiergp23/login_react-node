@@ -22,7 +22,6 @@ const verifyAccessToken = (req, res, next) => {
                 error: "Invalid or expired token"
             }));
         }
-
         req.user = decoded; 
         next(); 
     });

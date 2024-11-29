@@ -7,12 +7,14 @@ module.exports = {
        
         const checkSql = `SELECT * FROM users WHERE username = ? OR email = ?`;
         db.get(checkSql, [username, email], (err, row) => {
+            
+
+        
             if (err) {
                 console.error("Error al verificar la existencia del usuario:", err.message);
                 return callback(err);
             }
             if (row) {
-                // Si se encuentra un usuario con el mismo nombre o correo
                 return callback(new Error('user already exists'));
             }
 
@@ -34,7 +36,6 @@ module.exports = {
         })
     },
 
-     // Obtener usuario por email (para login)
      getUserByEmail: (email, callback) => {
         const sql = `SELECT * FROM users WHERE email = ?`;
         db.get(sql, [email], (err, user) => {
