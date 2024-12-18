@@ -11,7 +11,6 @@ const verifyAccessToken = (req, res, next) => {
             error: "Access token is required"
         }));
     }
-
     // Eliminar el "Bearer " del token (si es que está presente)
     const accessToken = token.startsWith('Bearer ') ? token.slice(7, token.length) : token;
 

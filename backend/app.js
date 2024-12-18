@@ -26,5 +26,5 @@ app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
 
-console.log('ACCESS_TOKEN_SECRET:', process.env.ACCESS_TOKEN_SECRET);
-console.log('REFRESH_TOKEN_SECRET:', process.env.REFRESH_TOKEN_SECRET);
+// console.log('ACCESS_TOKEN_SECRET:', process.env.ACCESS_TOKEN_SECRET);
+// console.log('REFRESH_TOKEN_SECRET:', process.env.REFRESH_TOKEN_SECRET);
