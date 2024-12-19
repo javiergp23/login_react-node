@@ -68,13 +68,11 @@ export default function SignUp() {
                     type="text" 
                     value={email} 
                     onChange={(e) => setEmail(e.target.value)}/>
-
                 <label htmlFor="">Password</label>
                 <input 
                     type="password" 
                     value={password} 
                     onChange={(e) => setPassword(e.target.value)}/>
-
                 <button>SignUp</button>
             </form>
         </DefaultLayout>

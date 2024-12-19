@@ -31,7 +31,6 @@ export const FormFilter: React.FC<FormFilterProps> = ({ filters, onFilterChange,
     setStatus(newStatus);
     onFilterChange({ tags, status: newStatus });
   };
-
     return (
         <form action="">  
             <Box sx={{ 
@@ -78,7 +77,6 @@ export const FormFilter: React.FC<FormFilterProps> = ({ filters, onFilterChange,
                     Limpiar filtros
                 </Button>
             </Box>
-            
         </form>
     )
 }

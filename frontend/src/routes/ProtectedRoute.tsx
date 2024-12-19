@@ -7,6 +7,5 @@ export default function ProtectedRoute() {
     if (auth.isAuthenticated && window.location.pathname !== '/dashboard') {
         return <Navigate to="/dashboard" />;
     }
-
     return auth.isAuthenticated ? <Outlet /> : <Navigate to="/" />;
 }

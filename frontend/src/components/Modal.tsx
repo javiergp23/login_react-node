@@ -17,7 +17,7 @@ const style = {
 };
 
 interface BasicModalProps {
-  fetchTasks: () => void; // Definición del prop para recibir la función
+  fetchTasks: () => void; 
 }
 
 export default function BasicModal({fetchTasks}: BasicModalProps) {

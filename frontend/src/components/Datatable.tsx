@@ -67,9 +67,9 @@ const Datatable: React.FC<DatatableProps> = ({ tasks, handleDelete }) => {
       <Table
         sx={{
             minWidth: 650,
-            maxWidth: '100%', // Limita el ancho al contenedor
-            tableLayout: 'fixed', // Controla el ancho de las celdas
-            wordWrap: 'break-word', // Permite dividir texto extenso
+            maxWidth: '100%', 
+            tableLayout: 'fixed',
+            wordWrap: 'break-word', 
         }}
         aria-label="a dense table"
       >
