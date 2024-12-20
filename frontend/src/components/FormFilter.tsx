@@ -17,7 +17,6 @@ export const FormFilter: React.FC<FormFilterProps> = ({ filters, onFilterChange,
         setStatus('');  
         handleClearFilters(); 
       };
-
     // Actualizar el estado de los filtros cuando el usuario cambie algo
   const handleTagsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = event.target;
